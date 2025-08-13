@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ようこそ、針倉村へ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F4F1EA;font-family:'Noto Sans JP',sans-serif;color:#3D352E;line-height:1.8}
+.page{display:none}.page.active{display:block}
+#modern-page{max-width:900px;margin:0 auto;padding:20px}
+
+/* ヘッダー */
+.modern-header img{
+  width:100%;height:350px;object-fit:cover;border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1)
+}
+.modern-header h1{
+  text-align:center;font-size:2.2rem;color:#5A4C3D;margin:28px 0 16px;font-weight:700
+}
+
+/* 汎用セクション */
+.modern-section{
+  background:#FFF;padding:24px;margin:18px 0;border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05)
+}
+.modern-section h2{
+  font-size:1.6rem;color:#8C6D46;border-bottom:2px solid #D4C5B2;
+  padding-bottom:8px;margin-top:0
+}
+.modern-section img{max-width:100%;border-radius:8px;margin-top:12px}
+
+/* welcome画像は比率保持で最大680px */
+.welcome-bubble img{
+  display:block;margin:16px auto;height:auto;max-width:min(680px,100%);width:auto
+}
+
+/* お知らせ：本文も access-note と同じ枠で表示 */
+.notice strong{color:#8C6D46}
+.access-note{
+  background:#FFFBEF;border-left:5px solid #D4C5B2;padding:12px;margin-top:14px;border-radius:4px
+}
+
+/* ジャム：文章左／画像右。右枠だけに背景を適用（cover） */
+.jam-flex{
+  display:grid;grid-template-columns:1.2fr 0.8fr;gap:12px;align-items:center
+}
+.jam-text{color:#2b2b2b}
+.jam-text h3{color:#5A3D2E}
+.jam-figure{
+  position:relative;width:80%; /* ← ご指定：100% → 80% に */
+  aspect-ratio:4/3;border-radius:12px;overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  background-image:url('./images/jam_back.jpg');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover; /* 原寸感が出ないように cover */
+  margin:0 auto; /* セル内で中央寄せ */
+}
+.jam-figure .jam-jar{
+  position:absolute;top:50%;left:48%;transform:translate(-50%,-50%);
+  width:min(42%,280px);max-width:100%;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));
+  cursor:default;-webkit-user-drag:none;user-select:none
+}
+#jam-image:active{transform:translate(-50%,-50%)}
+
+@media (max-width:720px){
+  .jam-flex{grid-template-columns:1fr}
+  .jam-figure{order:-1;width:100%}
+  .jam-figure .jam-jar{width:min(52%,240px)}
+}
+
+.modern-footer{text-align:center;padding:20px;font-size:.9rem;color:#888}
+
+/* ---- レトロ（旧サイト） ---- */
+#retro-page{
+  background:#EAE3C9;background-image:url('https://www.transparenttextures.com/patterns/old-wall.png');
+  font-family:'MS PGothic','MS Pゴシック','Hiragino Kaku Gothic Pro',Osaka,sans-serif;color:#000
+}
+.retro-container{width:min(800px,94vw);margin:0 auto;border:5px ridge #C0C0C0;background:#FFFFE0;padding:10px}
+.retro-header h1{
+  font-family:'Times New Roman',serif;color:#000080;text-align:center;border:3px double #F00;
+  padding:10px;background:#FF0
+}
+.retro-section h2{background:#008080;color:#FFF;font-size:20px;padding:5px;border:2px outset #FFF;margin:8px 0}
+.retro-section img{border:5px ridge #C0C0C0;margin:10px}
+hr{border:2px dashed #F0F}
+a{color:#00F}a:visited{color:#808}
+.blink{animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.retro-footer{text-align:center;padding-top:20px}
+
+/* サイトフッター */
+#site-footer{text-align:center;padding:24px 12px;color:#5A4C3D;font-size:.95rem}
+</style>
+</head>
+<body>
+<!-- ------------- モダン（現代） ------------- -->
+<div id="modern-page" class="page active">
+  <header class="modern-header">
+    <img src="./images/header_village.png" alt="針倉村の風景（川と山の集落）">
+    <h1>ようこそ、針倉村へ</h1>
+  </header>
+
+  <div class="welcome-bubble">
+    <img src="./images/welcome_message.png" alt="いらっしゃい!! はりくらむらへ!!">
+  </div>
+
+  <!-- 秘境の里（強調なし） -->
+  <section class="modern-section">
+    <h2>川と伝統に抱かれた、秘境の里</h2>
+    <p>都会の喧騒から遠く離れた、山々の懐に抱かれた小さな里、それが針倉村です。村の周りを清流がぐるりと囲み、四季折々の自然の美しさと、古くからの静かな時間が流れています。</p>
+    <p>私たちの村への道は、二本の跳ね橋。訪れるには少しばかり手間が必要ですが、その先には、忘れかけていた日本の原風景があなたを待っています。</p>
+  </section>
+
+  <!-- お知らせ：本文も access-note で表示 -->
+  <section class="modern-section notice">
+    <h2>お知らせ</h2>
+    <div class="access-note">
+      <strong>【重要】</strong><br>
+      針倉祭りは諸事情により開催されません。申し訳有りません。
+    </div>
+  </section>
+
+  <!-- 祭り -->
+  <section class="modern-section">
+    <h2>年に一度の祝祭「針倉祭（はりくらまつり）」</h2>
+    <p>年に一度、村は特別な熱気に包まれます。それが、村人の健康と山の恵みへの感謝、そして五穀豊穣を祈る「針倉祭」です。この日だけは、村の家々の軒先に色とりどりの布や手作りの灯籠が飾られ、村全体が幻想的な装飾に包まれます。フィナーレを飾るのは、夜空を焦がすほどの打ち上げ花火。村の誇る花火師たちが魂を込めて打ち上げる一瞬の芸術は、見る者の心に深く刻まれることでしょう。</p>
+    <img src="./images/harikura_festival.png" alt="針倉祭の夜店と提灯" loading="lazy">
+  </section>
+
+  <!-- 名産品：ジャム（文章左／画像右、背景は cover） -->
+  <section class="modern-section">
+    <h2>村の恵みと匠の技</h2>
+    <div class="jam-flex">
+      <div class="jam-text">
+        <h3>名産品：ハリクラジャム</h3>
+        <p>針倉村の朝霧を浴びて育った、甘酸っぱい野生のベリー。その日に採れた新鮮な実だけを使い、昔ながらの銅鍋でコトコトと煮詰めた「ハリクラジャム」は、村一番の人気を誇る名産品です。</p>
+        <p>パンはもちろん、ヨーグルトやチーズにも相性ぴったり。お土産にもどうぞ。</p>
+      </div>
+      <!-- 右側だけに背景を適用：cover -->
+      <figure class="jam-figure">
+        <img id="jam-image" class="jam-jar" src="./images/harikura_jam.png" alt="ハリクラジャム（名産品）">
+      </figure>
+    </div>
+
+    <h3 style="margin-top:40px;">伝統を受け継ぐ：花火師たち</h3>
+    <p>針倉祭の夜空を彩る花火は、この村に生きる花火師たちの手によって作られます。先祖代々受け継がれてきた秘伝の調合と、厳しい伝統に基づいた弟子たちの鍛錬。彼らの情熱そのものが、針倉村の夜空で大輪の花を咲かせるのです。美しい花火を上げるために、日々火薬にまみれながら鍛錬を積んでいます。</p>
+    <img src="./images/fireworks.png" alt="針倉村の花火" loading="lazy">
+  </section>
+
+  <!-- アクセス（強調なし） -->
+  <section class="modern-section">
+    <h2>アクセスについて</h2>
+    <p>当村は、周囲を川に囲まれた地理的条件から、外部との出入り口が二つしかございません。村へ入るには、村の入り口に架かる跳ね橋を渡る必要があります。必要時のみ、橋守が跳ね橋装置を下げる操作をします。</p>
+    <div class="access-note">
+      <strong>【重要】</strong><br>
+      橋守が不在となる夜間（日没から日の出まで）は、村への出入りは一切できません。ご来訪の際は、必ず日中の明るい時間帯にお越しください。
+    </div>
+    <img src="./images/drawbridge.png" alt="村の入り口の木製跳ね橋" loading="lazy">
+  </section>
+
+  <!-- 村長からのウェルカム謎 -->
+  <section class="modern-section welcome-puzzle">
+    <h2>村長からのウェルカム謎</h2>
+    <img src="./images/welcome_puzzle.png" alt="村長からのウェルカム謎">
+    <p>＊「村長からのウェルカム謎」をお楽しみください。</p>
+  </section>
+
+  <footer class="modern-footer"><p>© 2025 針倉村</p></footer>
+</div>
+
+<!-- ------------- レトロ（旧サイト） ------------- -->
+<div id="retro-page" class="page">
+  <div class="retro-container">
+    <header class="retro-header">
+      <marquee behavior="scroll" direction="left" scrollamount="5" style="color:red;font-weight:bold">★★★ようこそ！針倉村のホームページへ★★★</marquee>
+      <h1>★☆秘境の里・針倉村☆★</h1>
+    </header>
+    <center><img src="./images/header_village.png" alt="針倉村の風景" width="400" height="150"></center>
+
+    <div class="retro-section">
+      <h2><font color="yellow">■</font>針倉村ってどんなとこ？</h2>
+      <p>ここは山奥にある、とっても静かな村です。川に囲まれていて、おっきな跳ね橋を渡らないと入れないんだ！自然がいっぱいで、空気もおいしいよ！</p>
+    </div>
+
+    <hr />
+
+    <!-- 年に一度のお祭り！ -->
+    <div class="retro-section">
+      <h2><font color="yellow">■</font>年に一度のお祭り！</h2>
+      <p>毎年夏には<span class="blink" style="color:red; font-weight:bold;">「針倉祭」</span>があるよ！みんなでお祈りして、夜には花火がドーン！！すっごくキレイなんだ！</p>
+      <center>
+        <img src="./images/fireworks.png" alt="花火" width="250">
+        <img src="./images/harikura_festival.png" alt="お祭り" width="250">
+      </center>
+    </div>
+
+    <hr />
+
+    <!-- コラム -->
+    <div class="retro-section">
+      <h2><font color="yellow">■</font>コラム「針倉村の名物店紹介！」</h2>
+
+      <h3>おみやげ屋「ふるさと」</h3>
+      <p>「天使の砂」<br>周辺の川で採れた繊細で美しい砂。<br>当店、イチオシの看板商品になっております。</p>
+      <p>「謎つきハガキセット」<br>針倉村のお祭りに関する謎解きが書かれたハガキ。<br>ご友人に是非お送りください。</p>
+      <p>これら以外にもたくさんの商品があります。<br>是非、<strong>村の北東</strong>にある当店でお待ちしております。</p>
+
+      <h3>駄菓子屋「白石商店」</h3>
+      <p>様々なお菓子や文具を取りそろえたお店です。<br>目印は店の奥にある「黄、黒、赤、緑の旗」！<br>子供から大人まで是非お待ちしております。</p>
+
+      <h3>花火屋「針倉花火店」</h3>
+      <p>先祖代々受け継がれてきた伝統の長い花火屋です。<br>
+         弟子たちは住み込みで花火について学んでいきます。<br>
+         伝統の１つとして「角笛の音は集合の合図！」<br>
+         聞こえれば何があっても親方のもとに集合です。<br>
+         弟子たちはこのような伝統の習慣が染みついています。<br>
+         厳しいですが、弟子募集中です。興味のある方は是非。</p>
+    </div>
+
+    <hr />
+
+    <!-- ★ ご指定：コラムの“下”に「村へのアクセス」と ＠マーク行を配置 -->
+    <div class="retro-section">
+      <h2><font color="yellow">■</font>村へのアクセス<font color="red">（必ず読んでね！）</font></h2>
+      <p>村には<font color="green"><b>跳ね橋</b></font>でしか入れません。夜は橋守さんがいないから、橋は渡れないよ！来るなら絶対お昼に来てね！約束だよ！</p>
+      <center>
+        <img src="https://www.gifmania.jp/Animated-Gifs-Animated-Letters/Animations-Mail-Symbols/Images-At-Symbol/At-Symbol-89199.gif" alt="アットマーク">
+        <font size="2">ご意見・ご感想はこちらまで（現在準備中）</font>
+      </center>
+    </div>
+
+    <footer class="retro-footer">
+      <p>あなたは <img src="https://www.akita-pu.ac.jp/system/art-museum/image/counter.gif" alt="カウンター" /> 人目のお客様です</p>
+      <p><font size="1">Copyright(C) 2005 Harikura Village. All Rights Reserved.</font></p>
+    </footer>
+  </div>
+</div>
+
+<!-- サイト全体フッター -->
+<footer id="site-footer">
+  <div>住所：XX県◯◯群針倉村0103</div>
+  <div>TEL：012-3456-9876</div>
+</footer>
+
+<script>
+// --- 隠しページを表示させるためのJavaScript ---
+document.addEventListener('DOMContentLoaded', () => {
+    const jamImage = document.getElementById('jam-image');
+    const modernPage = document.getElementById('modern-page');
+    const retroPage = document.getElementById('retro-page');
+
+    if (!jamImage || !modernPage || !retroPage) {
+        return;
+    }
+
+    let clickCount = 0;
+    let firstClickTime = null;
+
+    jamImage.addEventListener('click', () => {
+        const currentTime = new Date().getTime();
+
+        if (clickCount === 0) {
+            firstClickTime = currentTime;
+        }
+
+        clickCount++;
+
+        // 最初のクリックから3秒経過していたらリセット
+        if (currentTime - firstClickTime > 3500) {
+            clickCount = 1;
+            firstClickTime = currentTime;
+        }
+
+        // 8回クリック & 最初のクリックから3秒以内
+        if (clickCount === 8 && currentTime - firstClickTime <= 3500) {
+            console.log('隠しページへようこそ！');
+            modernPage.classList.remove('active');
+            retroPage.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
